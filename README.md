@@ -4,15 +4,19 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # go-cli-spinner
-An easy spinner for Golang CLI
+An easy spinner for Golang CLI :smile:
 
 ![go-cli-spinner](https://user-images.githubusercontent.com/17505818/85238202-cff38a00-b402-11ea-9310-ea773a6b565e.gif)
 
-# How to run
+# How to install:
+
+Run command `go get -u github.com/kaduartur/go-cli-spinner`
+
+# How to run:
 
 Run command `go run ./cmd/main.go`
 
 
-# How to run test
+# How to test:
 
 Run command `go test ./pkg/...`
