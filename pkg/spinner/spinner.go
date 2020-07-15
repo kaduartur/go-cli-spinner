@@ -35,6 +35,7 @@ func New(title string) *Spinner {
 		Template:  template.Default,
 		FrameRate: DefaultFrameRate,
 		runChan:   make(chan struct{}),
+		timer:     time.NewTimer(DefaultFrameRate),
 	}
 
 	var stdout interface{} = syscall.Stdout
@@ -109,7 +110,7 @@ func (s *Spinner) animate() {
 			fmt.Print(out)
 		}
 
-		s.timer = time.NewTimer(DefaultFrameRate)
+		s.timer.Reset(s.FrameRate)
 		<-s.timer.C // Wait for timer
 		s.clearLine()
 	}
