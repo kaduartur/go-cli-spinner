@@ -59,7 +59,7 @@ func StartNew(title string) *Spinner {
 func (s *Spinner) Start() *Spinner {
 	goos := runtime.GOOS
 	if goos == "windows" { // Show title without animation on Windows
-		fmt.Print(s.Title)
+		fmt.Println(s.Title)
 		return s
 	}
 
@@ -98,13 +98,13 @@ func (s *Spinner) Stop() {
 // Success gives success feedback for users and stops the spinner execution
 func (s *Spinner) Success(msg string) {
 	s.Stop()
-	fmt.Printf("\r%s\n", msg)
+	fmt.Println(msg)
 }
 
 // Error gives error feedback for users and stops the spinner execution
 func (s *Spinner) Error(err error) {
 	s.Stop()
-	fmt.Printf("\r%s\n", err)
+	fmt.Println(err)
 }
 
 // animate runs the template animation
