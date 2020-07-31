@@ -3,6 +3,7 @@ package spinner
 import (
 	"fmt"
 	"io"
+	"runtime"
 	"sync"
 	"syscall"
 	"time"
@@ -56,7 +57,14 @@ func StartNew(title string) *Spinner {
 
 // Start starts the spinner execution
 func (s *Spinner) Start() *Spinner {
+	goos := runtime.GOOS
+	if goos == "windows" { // Show title without animation on Windows
+		fmt.Print(s.Title)
+		return s
+	}
+
 	go s.writer()
+
 	return s
 }
 
@@ -90,13 +98,13 @@ func (s *Spinner) Stop() {
 // Success gives success feedback for users and stops the spinner execution
 func (s *Spinner) Success(msg string) {
 	s.Stop()
-	fmt.Println(msg)
+	fmt.Printf("\r%s\n", msg)
 }
 
 // Error gives error feedback for users and stops the spinner execution
 func (s *Spinner) Error(err error) {
 	s.Stop()
-	fmt.Println(err)
+	fmt.Printf("\r%s\n", err)
 }
 
 // animate runs the template animation
